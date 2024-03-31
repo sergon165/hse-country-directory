@@ -1,6 +1,7 @@
 """
 Описание моделей данных (DTO).
 """
+from typing import Optional
 
 from pydantic import Field, BaseModel
 
@@ -93,6 +94,9 @@ class CountryDTO(BaseModel):
             timezones=[
                 "UTC+02:00",
             ],
+            area=1580.0,
+            latitude=60.116667,
+            longitude=19.9
         )
     """
 
@@ -106,6 +110,9 @@ class CountryDTO(BaseModel):
     population: int
     subregion: str
     timezones: list[str]
+    area: Optional[float]
+    latitude: float
+    longitude: float
 
 
 class CurrencyRatesDTO(BaseModel):
@@ -140,6 +147,7 @@ class WeatherInfoDTO(BaseModel):
             humidity=54,
             wind_speed=4.63,
             description="scattered clouds",
+            visibility=10000
         )
     """
 
@@ -148,6 +156,8 @@ class WeatherInfoDTO(BaseModel):
     humidity: int
     wind_speed: float
     description: str
+    visibility: int
+    timezone: int
 
 
 class LocationInfoDTO(BaseModel):
