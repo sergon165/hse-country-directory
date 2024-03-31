@@ -1,6 +1,7 @@
 """
 Описание моделей данных (DTO).
 """
+from datetime import datetime
 from typing import Optional
 
 from pydantic import Field, BaseModel
@@ -160,6 +161,29 @@ class WeatherInfoDTO(BaseModel):
     timezone: int
 
 
+class NewsDTO(BaseModel):
+    """
+    Модель данных о новостях.
+
+    .. code-block::
+
+        NewsDTO(
+            temp=13.92,
+            pressure=1023,
+            humidity=54,
+            wind_speed=4.63,
+            description="scattered clouds",
+            visibility=10000
+        )
+    """
+
+    source: str
+    title: str
+    description: Optional[str]
+    published_at: datetime
+    url: str
+
+
 class LocationInfoDTO(BaseModel):
     """
     Модель данных для представления общей информации о месте.
@@ -211,3 +235,4 @@ class LocationInfoDTO(BaseModel):
     location: CountryDTO
     weather: WeatherInfoDTO
     currency_rates: dict[str, float]
+    news: list[NewsDTO]

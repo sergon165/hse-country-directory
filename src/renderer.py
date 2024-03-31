@@ -43,21 +43,31 @@ class Renderer:
         ]
 
         capital = [
-            ["Столица", self.location_info.location.capital],
+            ["Столица", f"{self.location_info.location.capital}"],
             ["Широта", self.location_info.location.latitude],
-            ["Долгота", self.location_info.location.longitude]
+            ["Долгота", self.location_info.location.longitude],
         ]
 
         weather = [
             ["Погода", self.location_info.weather.description],
             ["Температура", f"{self.location_info.weather.temp} °C"],
             ["Видимость", f"{self.location_info.weather.visibility} м"],
-            ["Скорость ветра", f"{self.location_info.weather.wind_speed} м/с"]
+            ["Скорость ветра", f"{self.location_info.weather.wind_speed} м/с"],
         ]
 
         location_table = tabulate(location, tablefmt="simple_grid")
         capital_table = tabulate(capital, tablefmt="simple_grid")
         weather_table = tabulate(weather, tablefmt="simple_grid")
+
+        news_headers = ["Источник", "Новость", "Время публикации"]
+        news = []
+        for article in self.location_info.news:
+            news.append([article.source, article.title, article.published_at])
+        news_table = tabulate(
+            news,
+            headers=news_headers,
+            tablefmt="simple_grid",
+        )
 
         return (
             "Информация о стране",
@@ -65,7 +75,9 @@ class Renderer:
             "Информация о столице",
             capital_table,
             "Информация о погоде",
-            weather_table
+            weather_table,
+            "Новости",
+            news_table,
         )
 
         # return (
@@ -136,6 +148,6 @@ class Renderer:
         :return:
         """
 
-        dt = datetime.utcnow() + timedelta(seconds=self.location_info.weather.timezone)
-        time = dt.strftime("%H:%M")
+        current_time = datetime.utcnow() + timedelta(seconds=self.location_info.weather.timezone)
+        time = current_time.strftime("%H:%M")
         return time
