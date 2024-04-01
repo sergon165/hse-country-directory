@@ -44,8 +44,8 @@ class Renderer:
 
         capital = [
             ["Столица", f"{self.location_info.location.capital}"],
-            ["Широта", self.location_info.location.latitude],
-            ["Долгота", self.location_info.location.longitude],
+            ["Широта", self.location_info.weather.latitude],
+            ["Долгота", self.location_info.weather.longitude],
         ]
 
         weather = [

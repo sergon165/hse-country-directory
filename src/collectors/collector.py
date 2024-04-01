@@ -228,6 +228,8 @@ class WeatherCollector(BaseCollector):
                 description=result["weather"][0]["description"],
                 visibility=result["visibility"],
                 timezone=result["timezone"],
+                latitude=result["coord"]["lat"],
+                longitude=result["coord"]["lon"]
             )
 
         return None

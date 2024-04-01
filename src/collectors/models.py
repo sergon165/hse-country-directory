@@ -148,7 +148,10 @@ class WeatherInfoDTO(BaseModel):
             humidity=54,
             wind_speed=4.63,
             description="scattered clouds",
-            visibility=10000
+            visibility=10000,
+            timezone=7200,
+            latitude=44.34,
+            longitude=10.99
         )
     """
 
@@ -159,6 +162,8 @@ class WeatherInfoDTO(BaseModel):
     description: str
     visibility: int
     timezone: int
+    latitude: float
+    longitude: float
 
 
 class NewsDTO(BaseModel):
@@ -168,12 +173,12 @@ class NewsDTO(BaseModel):
     .. code-block::
 
         NewsDTO(
-            temp=13.92,
-            pressure=1023,
-            humidity=54,
-            wind_speed=4.63,
-            description="scattered clouds",
-            visibility=10000
+            source="USA Today",
+            title="Purdue vs. Tennessee: Predictions and odds for Elite Eight March Madness
+                game - USA TODAY", description="No. 1 seed Purdue faces No. 2 seed Tennessee in the Elite Eight of men's
+                March Madness. Here are some predictions for Sunday's Elite Eight game.",
+            published_at="2024-03-31T14:03:57Z",
+            url=""https://theathletic.com/5380366/2024/03/31/illinois-uconn-run-elite-eight/"
         )
     """
 
